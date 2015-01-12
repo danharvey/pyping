@@ -298,6 +298,7 @@ class Ping(object):
 				current_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.getprotobyname("icmp"))
 			else:
 				current_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.getprotobyname("icmp"))
+				current_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
 			# Bind the socket to a source address
 			if self.bind:

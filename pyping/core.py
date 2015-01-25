@@ -303,6 +303,8 @@ class Ping(object):
 			if self.bind:
 				current_socket.bind((self.bind, 0)) # Port number is irrelevant for ICMP
 
+			current_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+
 		except socket.error, (errno, msg):
 			if errno == 1:
 				# Operation not permitted - Add more information to traceback
